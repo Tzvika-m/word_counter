@@ -24,22 +24,22 @@ python3 word_counter.py
 
 Text input
 ```
-curl --header "Content-Type: application/json"   --request POST  --data '{"text": "Hi! My name is (what?), my name is (who?), my name is Slim Shady"}' http://127.0.0.1:5000/word_counter
+curl --header "Content-Type: application/json" --request POST --data '{"text": "Hi! My name is (what?), my name is (who?), my name is Slim Shady"}' http://127.0.0.1:5000/word_counter
 ```
 
 URL input
 ```
-curl --header "Content-Type: application/json"   --request POST  --data '{"url": "https://raw.githubusercontent.com/Tzvika-m/word_counter/master/test.txt"}' http://127.0.0.1:5000/word_counter
+curl --header "Content-Type: application/json" --request POST --data '{"url": "https://raw.githubusercontent.com/Tzvika-m/word_counter/master/test.txt"}' http://127.0.0.1:5000/word_counter
 ```
 
 File input
 ```
-curl --header "Content-Type: application/json"   --request POST  --data '{"file_path": "test.txt"}' http://127.0.0.1:5000/word_counter
+curl --header "Content-Type: application/json"  --request POST --data '{"file_path": "test.txt"}' http://127.0.0.1:5000/word_counter
 ```
 
 Get a word's counter
 ```
-curl --header "Content-Type: application/json"  http://127.0.0.1:5000/word_counter/what
+curl http://127.0.0.1:5000/word_counter/what
 ```
 
 
