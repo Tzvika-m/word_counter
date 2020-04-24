@@ -3,7 +3,7 @@ import requests
 import logging
 from exceptions import ApiException
 
-DELIMITERS = ['!', '?', '(', ')', ',', '.', ';', ':', '-', '_', '*', '"', "'", '/', '\\']
+DELIMITERS = ['!', '?', '(', ')', ',', '.', ';', ':', '-', '_', '*', '\\n', '"', "'", '/', '\\']
 LINE_NUM_BUFFER = 10
 
 
@@ -25,7 +25,7 @@ def save_to_db(word_count, db):
 
 def get_data_from_url(url):
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=30)
         if response.status_code != 200:
             raise ApiException('url returned bad response', 400)
         else:
@@ -61,3 +61,8 @@ def handle_file(path, db):
     except OSError as e:
         logging.error('error in file handling', e)
         raise ApiException('error in file handling', 500)
+
+
+def query_word_count(word, db):
+    value = db.get(word.lower())
+    return int(value or 0)

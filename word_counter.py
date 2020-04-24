@@ -3,7 +3,7 @@ from flask import request
 import redis
 import json
 import logging
-from word_service import count, save_to_db, get_data_from_url, handle_file
+from word_service import count, save_to_db, get_data_from_url, handle_file, query_word_count
 from exceptions import ApiException
 
 app = Flask(__name__)
@@ -41,7 +41,7 @@ def count_words():
 @app.route('/word_counter/<word>', methods=['GET'])
 def get_word_count(word):
     try:
-        word_count = int(db.get(word)) or 0
+        word_count = query_word_count(word, db)
         return json.dumps({'count': word_count}), 200
     except redis.exceptions.RedisError as e:
         logging.error('could not connect to db', e)
