@@ -8,8 +8,8 @@ LINE_NUM_BUFFER = 10
 
 
 def split(string, delimiters):
-    for deli in delimiters:
-        string = string.replace(deli, ' ')
+    for delim in delimiters:
+        string = string.replace(delim, ' ')
     return string.split()
 
 
@@ -31,7 +31,7 @@ def get_data_from_url(url):
         else:
             return str(response.content)
     except requests.exceptions.RequestException as e:
-        logging.error('s')
+        logging.error('error connecting to input url', e)
         raise ApiException('error while requesting url', 500)
 
 

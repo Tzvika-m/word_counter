@@ -25,7 +25,7 @@ def count_words():
         elif 'file_path' in body:
             handle_file(body['file_path'], db)
         else:
-            return 'No input', 400
+            return 'no input', 400
     except ApiException as e:
         return e.msg, e.code
     except redis.exceptions.RedisError as e:
@@ -41,7 +41,7 @@ def count_words():
 @app.route('/word_counter/<word>', methods=['GET'])
 def get_word_count(word):
     try:
-        word_count = db.get(word) or 0
+        word_count = int(db.get(word)) or 0
         return json.dumps({'count': word_count}), 200
     except redis.exceptions.RedisError as e:
         logging.error('could not connect to db', e)
